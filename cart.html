@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════
+   STARK INDUSTRIES — AVENGERS STORE
+   Shared JavaScript — cart.js
+═══════════════════════════════════════════════ */
+
+(function () {
+  'use strict';
+
+  // ─── Cart State ───
+  let cart = JSON.parse(localStorage.getItem('avengers_cart') || '[]');
+
+  function saveCart() {
+    localStorage.setItem('avengers_cart', JSON.stringify(cart));
+  }
+
+  function getCount() {
+    return cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  function updateCartUI() {
+    const btn = document.querySelector('.nav-cart');
+    if (btn) btn.textContent = `⚡ CART (${getCount()})`;
+  }
+
+  window.addToCart = function (name, price) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, qty: 1 });
+    }
+    saveCart();
+    updateCartUI();
+    showToast(`✓ ${name} added to cart`);
+  };
+
+  window.showToast = function (msg) {
+    let notif = document.getElementById('cartNotif');
+    if (!notif) {
+      notif = document.createElement('div');
+      notif.id = 'cartNotif';
+      notif.className = 'cart-notif';
+      document.body.appendChild(notif);
+    }
+    notif.textContent = msg;
+    notif.classList.add('show');
+    clearTimeout(notif._timer);
+    notif._timer = setTimeout(() => notif.classList.remove('show'), 3000);
+  };
+
+  // ─── Filter buttons ───
+  window.initFilters = function () {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  };
+
+  // ─── Scroll reveal ───
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+  }
+
+  // ─── Init ───
+  document.addEventListener('DOMContentLoaded', function () {
+    updateCartUI();
+    initFilters();
+    initReveal();
+
+    // Active nav link
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a').forEach(a => {
+      if (a.getAttribute('href') === path) a.classList.add('active');
+    });
+  });
+})();
