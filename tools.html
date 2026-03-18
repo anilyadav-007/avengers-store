@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Tools — Avengers Store</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-banner { background: radial-gradient(ellipse 80% 60% at 50% 40%, #0a0f18, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, #0a100a, transparent 60%), var(--darker); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><div class="logo-arc"></div>STARK INDUSTRIES</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="weapons.html">Weapons</a>
+    <a href="tech.html">Tech</a>
+    <a href="tools.html">Tools</a>
+    <a href="clothing.html">Clothing</a>
+  </nav>
+  <button class="nav-cart">⚡ CART (0)</button>
+</header>
+
+<section class="page-banner">
+  <div class="hex-bg"></div>
+  <div class="banner-icon">🛠️</div>
+  <p class="eyebrow">// Division — Hero Tools & Field Gear</p>
+  <h1>HERO TOOLS</h1>
+  <p>S.H.I.E.L.D. gear, Wakandan gadgets, Spider-tech & field-ready hero equipment.</p>
+</section>
+
+<div class="divider"></div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">48</div><div class="stat-label">Tools in Stock</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Hero Loadouts</div></div>
+  <div class="stat"><div class="stat-num">847</div><div class="stat-label">Facilities Unlocked</div></div>
+  <div class="stat"><div class="stat-num">L7</div><div class="stat-label">Max Clearance Level</div></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="products-section">
+  <div class="section-label">
+    <p class="eyebrow">// Field Equipment</p>
+    <h2>SELECT YOUR GEAR</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="stark">Stark-Made</button>
+    <button class="filter-btn" data-filter="shield">S.H.I.E.L.D.</button>
+    <button class="filter-btn" data-filter="wakandan">Wakandan</button>
+    <button class="filter-btn" data-filter="spider">Spider-Tech</button>
+    <button class="filter-btn" data-filter="surveillance">Surveillance</button>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- EDITH Glasses -->
+    <div class="product-card featured-card" data-category="stark">
+      <div class="product-badge badge-new">EDITH Edition</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0d1524);font-size:7rem;width:300px;flex-shrink:0;">
+        🕶️
+        <div class="item-glow" style="background:radial-gradient(circle,#4488ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark / Peter Parker</div>
+        <div class="product-name">E.D.I.T.H. Smart Glasses</div>
+        <div class="product-desc">Even Dead I'm The Hero. Tony Stark's final gift to Peter Parker — now available to the public (most features unlocked). Satellite access, drone strike authorization, facial recognition across 3 billion profiles, and real-time threat mapping across all seven continents. Prescription lenses available at extra cost.</div>
+        <ul class="product-specs">
+          <li>Satellite: Full globe access</li>
+          <li>Facial recognition: 3 billion profiles</li>
+          <li>Drone command: Up to 400 units</li>
+          <li>Threat map: Real-time, global</li>
+          <li>Strike authorization: Standard clearance required</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$58,000<small>Military AI included</small></div>
+          <button class="add-btn" onclick="addToCart('EDITH Smart Glasses', 58000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Shooters -->
+    <div class="product-card" data-category="spider">
+      <div class="product-badge badge-new">Stark Edition</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#101018,#141420)">
+        🕷️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff444433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Peter Parker — Spider-Man</div>
+        <div class="product-name">Web-Shooters — Stark Edition</div>
+        <div class="product-desc">360 PSI synthetic web fluid. 50-cartridge wrist capacity. 8 programmable web patterns: classic, net, web-grenade, impact web, and more. Spider-web tensile strength: 120 tons.</div>
+        <ul class="product-specs">
+          <li>Pressure: 360 PSI</li>
+          <li>Patterns: 8 programmable modes</li>
+          <li>Tensile strength: 120 tons</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$7,200<small>200 cartridges included</small></div>
+          <button class="add-btn" onclick="addToCart('Web-Shooters Stark Edition', 7200)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- S.H.I.E.L.D. Badge -->
+    <div class="product-card" data-category="shield">
+      <div class="product-img" style="background:linear-gradient(135deg,#0d100d,#121512)">
+        🪪
+        <div class="item-glow" style="background:radial-gradient(circle,#aaaaaa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Nick Fury — Director of S.H.I.E.L.D.</div>
+        <div class="product-name">S.H.I.E.L.D. Agent Badge — Level 6</div>
+        <div class="product-desc">Biometric-locked titanium alloy badge. Grants access to 847 classified S.H.I.E.L.D. facilities worldwide. Helicarrier deck pass included. Background check required at checkout.</div>
+        <ul class="product-specs">
+          <li>Material: Biometric titanium alloy</li>
+          <li>Access: 847 classified facilities</li>
+          <li>Clearance: Level 6</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$3,400<small>Background check required</small></div>
+          <button class="add-btn" onclick="addToCart('SHIELD Agent Badge', 3400)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kimoyo Beads -->
+    <div class="product-card" data-category="wakandan">
+      <div class="product-badge badge-new">Wakanda Export</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0a1022)">
+        📿
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">T'Challa / Shuri — Wakanda</div>
+        <div class="product-name">Kimoyo Beads — Communication Set</div>
+        <div class="product-desc">Vibranium-lattice bead bracelet. Holographic display projects from wrist. Medical monitoring, satellite comms, and Shuri's signature interface. Wakandan tech export — limited quarterly allocation.</div>
+        <ul class="product-specs">
+          <li>Display: Holographic wrist projection</li>
+          <li>Comms: Satellite-linked, encrypted</li>
+          <li>Medical: Full biometric monitoring</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$24,000<small>Direct from Wakanda</small></div>
+          <button class="add-btn" onclick="addToCart('Kimoyo Beads', 24000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quinjet Keycard -->
+    <div class="product-card" data-category="shield">
+      <div class="product-badge badge-classified">Level 7 Only</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0d1018)">
+        ✈️
+        <div class="item-glow" style="background:radial-gradient(circle,#4466ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">S.H.I.E.L.D. Aviation</div>
+        <div class="product-name">Quinjet Access & Pilot Card</div>
+        <div class="product-desc">Grants piloting authorization for the S.T.R.I.K.E. Quinjet fleet. Stealth/cloaking mode bypass key. Aircraft capable of Mach 2.5. Full pilot certification course included. Level 7 clearance required — non-negotiable.</div>
+        <ul class="product-specs">
+          <li>Fleet access: Full S.T.R.I.K.E. Quinjet fleet</li>
+          <li>Speed: Mach 2.5</li>
+          <li>Cloak bypass: Included</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$1,800<small>Pilot license + Level 7</small></div>
+          <button class="add-btn" onclick="addToCart('Quinjet Access Card', 1800)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hulkbuster Gauntlet -->
+    <div class="product-card" data-category="stark">
+      <div class="product-img" style="background:linear-gradient(135deg,#180a08,#201008)">
+        👊
+        <div class="item-glow" style="background:radial-gradient(circle,#ff882233,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark — Veronica Platform</div>
+        <div class="product-name">Hulkbuster Gauntlet — Veronica</div>
+        <div class="product-desc">Exo-frame fist attachment delivering 150 ton punch force amplification. Vibration dampeners prevent wrist injury. Integrates with any Iron Man suit Mark XX+. Size-adjustable fitting system.</div>
+        <ul class="product-specs">
+          <li>Punch force: 150 ton amplification</li>
+          <li>Compatible: Iron Man Mark XX+</li>
+          <li>Dampening: Full vibration isolation</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$430,000<small>Single gauntlet unit</small></div>
+          <button class="add-btn" onclick="addToCart('Hulkbuster Gauntlet', 430000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nick Fury Eyepatch -->
+    <div class="product-card" data-category="shield">
+      <div class="product-badge badge-gold">Director's Edition</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080808,#100808)">
+        🕵️
+        <div class="item-glow" style="background:radial-gradient(circle,#333333aa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Nick Fury — S.H.I.E.L.D. Director</div>
+        <div class="product-name">Fury's Tactical Eyepatch — Mk IV</div>
+        <div class="product-desc">Integrated micro-camera array. Thermal vision. LiDAR depth sensing. Wireless transmission to FRIDAY-compatible systems. Scratch-resistant. Water resistant to 200m. Just looks incredibly cool.</div>
+        <ul class="product-specs">
+          <li>Camera: Micro-array — 4K HDR</li>
+          <li>Vision: Thermal + LiDAR</li>
+          <li>Transmission: FRIDAY-compatible</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$12,000<small>Director's signed edition</small></div>
+          <button class="add-btn" onclick="addToCart('Fury Tactical Eyepatch', 12000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ant-Man Helmet -->
+    <div class="product-card" data-category="stark">
+      <div class="product-img" style="background:linear-gradient(135deg,#0a120a,#0f1a0f)">
+        🪲
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff4433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Scott Lang — Ant-Man</div>
+        <div class="product-name">Ant-Man Helmet — Communication Module</div>
+        <div class="product-desc">Ant colony communication antenna array. Pheromone signal emitter — control up to 10 million ants simultaneously. Integrated HUD. Pym-tech size regulator headset. EMP shielded.</div>
+        <ul class="product-specs">
+          <li>Ant control: Up to 10M simultaneously</li>
+          <li>Signal: Pheromone emitter array</li>
+          <li>HUD: Full AR overlay</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$34,500<small>Ants not included</small></div>
+          <button class="add-btn" onclick="addToCart('Ant-Man Helmet', 34500)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sling Ring -->
+    <div class="product-card" data-category="surveillance">
+      <div class="product-badge badge-classified">Mystic Arts</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d080d,#15081a)">
+        💍
+        <div class="item-glow" style="background:radial-gradient(circle,#ff88ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Doctor Strange / Ancient One</div>
+        <div class="product-name">Sling Ring — Portal Generator</div>
+        <div class="product-desc">Generates inter-dimensional portals. Kamar-Taj issued. Requires Mystic Arts training — non-sorcerers will see a sparkly ring and nothing else. We take no responsibility for accidental Mirrorverse entry.</div>
+        <ul class="product-specs">
+          <li>Function: Inter-dimensional portal</li>
+          <li>Range: Anywhere — including Mirror Dimension</li>
+          <li>Requirement: Mystic Arts trained</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$9,200<small>Sorcerer license preferred</small></div>
+          <button class="add-btn" onclick="addToCart('Sling Ring', 9200)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html" style="font-size:0.95rem"><div class="logo-arc" style="width:26px;height:26px"></div>STARK INDUSTRIES</a>
+      <p>Official merchandise from Earth's Mightiest Heroes. S.H.I.E.L.D. certified. Asgardian approved. Wakandan sourced.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul>
+      <li><a href="weapons.html">Weapons</a></li>
+      <li><a href="tech.html">Technology</a></li>
+      <li><a href="tools.html">Hero Tools</a></li>
+      <li><a href="clothing.html">Suits & Clothing</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Tools By Hero</h4><ul>
+      <li><a href="#">Spider-Man</a></li>
+      <li><a href="#">Nick Fury</a></li>
+      <li><a href="#">Doctor Strange</a></li>
+      <li><a href="#">Ant-Man</a></li>
+      <li><a href="#">Black Panther</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Info</h4><ul>
+      <li><a href="#">Clearance Levels</a></li>
+      <li><a href="#">Shipping Policy</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">Contact Fury</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stark Industries — Avengers Division. All rights reserved.</span>
+    <span>🌍 Earth-616 — Dispatching to All Realms</span>
+  </div>
+</footer>
+
+<div class="cart-notif" id="cartNotif"></div>
+<script src="cart.js"></script>
+</body>
+</html>
