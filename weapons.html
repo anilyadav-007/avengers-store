@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weapons Vault — Stark Industries</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-banner { background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a0808, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, #0a0a1a, transparent 60%), var(--darker); }
+.page-banner h1 { text-shadow: 0 0 60px #ff444433; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><div class="logo-arc"></div>STARK INDUSTRIES</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="weapons.html">Weapons</a>
+    <a href="tech.html">Tech</a>
+    <a href="tools.html">Tools</a>
+    <a href="clothing.html">Clothing</a>
+  </nav>
+  <button class="nav-cart">⚡ CART (0)</button>
+</header>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="hex-bg"></div>
+  <div class="banner-icon">⚔️</div>
+  <p class="eyebrow">// Division — Weapons & Armaments</p>
+  <h1>WEAPONS VAULT</h1>
+  <p>Asgardian-forged. Wakandan-refined. Stark-engineered. All hero-grade.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">62</div><div class="stat-label">Weapons in Stock</div></div>
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label">Hero Arsenals</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Realms Sourced From</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Battle Tested</div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="section-label">
+    <p class="eyebrow">// All Armaments</p>
+    <h2>SELECT YOUR WEAPON</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="asgardian">Asgardian</button>
+    <button class="filter-btn" data-filter="stark">Stark-Made</button>
+    <button class="filter-btn" data-filter="wakandan">Wakandan</button>
+    <button class="filter-btn" data-filter="shield">S.H.I.E.L.D.</button>
+    <button class="filter-btn" data-filter="replica">Replica</button>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Mjolnir -->
+    <div class="product-card featured-card" data-category="asgardian">
+      <div class="product-badge badge-limited">Limited — 1 Left</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d1a2a,#1a2030);font-size:7rem;width:300px;flex-shrink:0;">
+        ⚡
+        <div class="item-glow" style="background:radial-gradient(circle,#aac0ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson — God of Thunder</div>
+        <div class="product-name">Mjolnir — Uru War Hammer</div>
+        <div class="product-desc">Forged in the heart of a dying star by the Dwarves of Nidavellir, enchanted by Odin the All-Father. Grants the power of thunder and lightning to the wielder. Only the worthy may lift it — we make no guarantees regarding your worthiness.</div>
+        <ul class="product-specs">
+          <li>Material: Uru metal — indestructible</li>
+          <li>Enchantment: Odin's inscription — worthiness locked</li>
+          <li>Weight: 42.3 lbs (subjective — may vary by worthiness)</li>
+          <li>Ability: Summon lightning, flight, energy projection</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$47,999<small>Free Asgardian shipping</small></div>
+          <button class="add-btn" onclick="addToCart('Mjolnir', 47999)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Captain America Shield -->
+    <div class="product-card" data-category="wakandan">
+      <div class="product-badge badge-new">New Stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0d1a,#1a1a30)">
+        🛡️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff444433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Steve Rogers — Captain America</div>
+        <div class="product-name">Vibranium Shield — Mark I</div>
+        <div class="product-desc">Pure Wakandan vibranium disc. Absorbs and redirects kinetic energy. 24-inch diameter. Custom star inlay. Battle-tested across seven decades and two timelines.</div>
+        <ul class="product-specs">
+          <li>Material: Pure Wakandan vibranium</li>
+          <li>Diameter: 24 inches / 60 cm</li>
+          <li>Weight: 12 lbs — zero recoil on return</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$89,500<small>Govt. ID required</small></div>
+          <button class="add-btn" onclick="addToCart('Vibranium Shield', 89500)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stormbreaker -->
+    <div class="product-card" data-category="asgardian">
+      <div class="product-badge badge-limited">1 in Stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0d1a,#0d1020)">
+        🪓
+        <div class="item-glow" style="background:radial-gradient(circle,#6699ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson</div>
+        <div class="product-name">Stormbreaker — Uru Battle Axe</div>
+        <div class="product-desc">Groot handle. Uru blade. Bifrost-capable. Channels the full power of a neutron star. Includes a Nidavellir certificate of authenticity signed by King Eitri.</div>
+        <ul class="product-specs">
+          <li>Handle: Groot sapling — living wood</li>
+          <li>Blade: Uru metal — Nidavellir forged</li>
+          <li>Bifrost summon: Included</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$310,000<small>One Bifrost pass included</small></div>
+          <button class="add-btn" onclick="addToCart('Stormbreaker', 310000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hawkeye Bow -->
+    <div class="product-card" data-category="stark">
+      <div class="product-img" style="background:linear-gradient(135deg,#0d150d,#101a10)">
+        🏹
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff6633,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Clint Barton — Hawkeye</div>
+        <div class="product-name">Recurve Compound Bow — Pro Series</div>
+        <div class="product-desc">Collapsible titanium frame. 200 lb draw weight. Smart-targeting scope with wind compensation. Fully compatible with Stark Industries specialty arrowheads.</div>
+        <ul class="product-specs">
+          <li>Draw Weight: 200 lbs</li>
+          <li>Frame: Collapsible aircraft-grade titanium</li>
+          <li>Scope: AI-assisted targeting</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$12,300<small>Includes 24 arrows</small></div>
+          <button class="add-btn" onclick="addToCart('Hawkeye Bow', 12300)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widow Stingers -->
+    <div class="product-card" data-category="shield">
+      <div class="product-badge badge-classified">Classified</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#12080d,#1a0a14)">
+        ⚡
+        <div class="item-glow" style="background:radial-gradient(circle,#ff44aa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Natasha Romanoff — Black Widow</div>
+        <div class="product-name">Widow's Bite — Wrist Stingers</div>
+        <div class="product-desc">Electroshock wristbands delivering up to 30,000 volts. Adjustable 5-level intensity dial. Red Room issue — S.H.I.E.L.D. Level 5 clearance required at checkout.</div>
+        <ul class="product-specs">
+          <li>Voltage: 30,000 V (adjustable)</li>
+          <li>Range: Contact to 8 ft electro-wire</li>
+          <li>Charge: 48-hour battery life</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$8,750<small>Pair — Level 5 clearance</small></div>
+          <button class="add-btn" onclick="addToCart('Widow\'s Bite', 8750)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- War Machine Arm Cannon -->
+    <div class="product-card" data-category="stark">
+      <div class="product-badge badge-classified">Export Restricted</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#101010,#181818)">
+        🔫
+        <div class="item-glow" style="background:radial-gradient(circle,#888888aa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">James Rhodes — War Machine</div>
+        <div class="product-name">Shoulder Gatling Cannon — M134</div>
+        <div class="product-desc">6,000 RPM minigun shoulder mount. Depleted uranium rounds. Suit-integrated targeting. Requires War Machine exo-frame (sold separately). Export restricted to civilian users.</div>
+        <ul class="product-specs">
+          <li>Fire Rate: 6,000 rounds/min</li>
+          <li>Ammo: Depleted uranium</li>
+          <li>Power: Arc reactor required</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$890,000<small>Military license required</small></div>
+          <button class="add-btn" onclick="addToCart('Shoulder Cannon', 890000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loki Scepter -->
+    <div class="product-card" data-category="replica">
+      <div class="product-badge badge-gold">Collector's</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d0d12,#121218)">
+        🔱
+        <div class="item-glow" style="background:radial-gradient(circle,#ccff3333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Loki Laufeyson — God of Mischief</div>
+        <div class="product-name">Chitauri Scepter — Certified Replica</div>
+        <div class="product-desc">Certified non-enchanted replica. Gold-tone vibranium alloy staff. Mind Stone slot (placeholder crystal included — real stone not included, we checked). 6 ft length.</div>
+        <ul class="product-specs">
+          <li>Length: 6 ft / 183 cm</li>
+          <li>Material: Vibranium-alloy replica</li>
+          <li>Stone: Inert crystal replica</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$5,200<small>Mind Stone sold separately</small></div>
+          <button class="add-btn" onclick="addToCart('Loki Scepter Replica', 5200)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wakandan Spear -->
+    <div class="product-card" data-category="wakandan">
+      <div class="product-badge badge-new">Wakanda Export</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0a1022)">
+        🗡️
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Dora Milaje — Wakanda Royal Guard</div>
+        <div class="product-name">Vibranium Spear — Dora Milaje Issue</div>
+        <div class="product-desc">Royal Guard-issue vibranium spear with energy channeling core. Conducts kinetic and electromagnetic energy. Extends to 8 ft. Retractable for carry.</div>
+        <ul class="product-specs">
+          <li>Material: Vibranium alloy — Wakandan forge</li>
+          <li>Length: Retractable 3 ft to 8 ft</li>
+          <li>Function: Energy channeling, melee</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$42,000<small>Direct Wakandan import</small></div>
+          <button class="add-btn" onclick="addToCart('Vibranium Spear', 42000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gamora Sword -->
+    <div class="product-card" data-category="replica">
+      <div class="product-img" style="background:linear-gradient(135deg,#08100d,#0a1412)">
+        ⚔️
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff8833,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Gamora — Guardians of the Galaxy</div>
+        <div class="product-name">Godslayer Sword — Replica</div>
+        <div class="product-desc">Full-scale replica of Gamora's signature blade. Celestial-steel finish. Carbon-composite blade with ceremonial edge. Thanos-grade sentimental value included.</div>
+        <ul class="product-specs">
+          <li>Blade: 36-inch carbon composite</li>
+          <li>Finish: Celestial-steel plating</li>
+          <li>Certification: Xandar museum grade</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$6,800<small>Replica — non-lethal</small></div>
+          <button class="add-btn" onclick="addToCart('Godslayer Replica', 6800)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html" style="font-size:0.95rem"><div class="logo-arc" style="width:26px;height:26px"></div>STARK INDUSTRIES</a>
+      <p>Official merchandise from Earth's Mightiest Heroes. S.H.I.E.L.D. certified. Asgardian approved. Wakandan sourced.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul>
+      <li><a href="weapons.html">Weapons</a></li>
+      <li><a href="tech.html">Technology</a></li>
+      <li><a href="tools.html">Hero Tools</a></li>
+      <li><a href="clothing.html">Suits & Clothing</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Weapons By Hero</h4><ul>
+      <li><a href="#">Thor (Asgardian)</a></li>
+      <li><a href="#">Black Widow</a></li>
+      <li><a href="#">Hawkeye</a></li>
+      <li><a href="#">War Machine</a></li>
+      <li><a href="#">Dora Milaje</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Info</h4><ul>
+      <li><a href="#">Clearance Levels</a></li>
+      <li><a href="#">Export Restrictions</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">Contact Fury</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stark Industries — Avengers Division. All rights reserved.</span>
+    <span>🌍 Earth-616 — Dispatching to All Realms</span>
+  </div>
+</footer>
+
+<div class="cart-notif" id="cartNotif"></div>
+<script src="cart.js"></script>
+</body>
+</html>
