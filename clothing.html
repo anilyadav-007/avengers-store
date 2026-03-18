@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suits & Clothing — Avengers Store</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-banner { background: radial-gradient(ellipse 80% 60% at 50% 40%, #0d0810, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, #100810, transparent 60%), var(--darker); }
+
+/* Size selector */
+.size-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.size-btn {
+  background: var(--panel2); border: 1px solid var(--border);
+  color: var(--muted); font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem; padding: 5px 10px; border-radius: 2px;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em;
+}
+.size-btn:hover, .size-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(240,192,64,0.08); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><div class="logo-arc"></div>STARK INDUSTRIES</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="weapons.html">Weapons</a>
+    <a href="tech.html">Tech</a>
+    <a href="tools.html">Tools</a>
+    <a href="clothing.html">Clothing</a>
+  </nav>
+  <button class="nav-cart">⚡ CART (0)</button>
+</header>
+
+<section class="page-banner">
+  <div class="hex-bg"></div>
+  <div class="banner-icon">🦸</div>
+  <p class="eyebrow">// Division — Suits & Apparel</p>
+  <h1>HERO WARDROBE</h1>
+  <p>Vibranium-weave habits, nano-suits, Asgardian silks & battle-ready apparel for every hero.</p>
+</section>
+
+<div class="divider"></div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">52</div><div class="stat-label">Apparel Items</div></div>
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Hero Suits</div></div>
+  <div class="stat"><div class="stat-num">S—4XL</div><div class="stat-label">Sizes Available</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Realm Sources</div></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="products-section">
+  <div class="section-label">
+    <p class="eyebrow">// All Apparel</p>
+    <h2">SUIT UP</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="nanotech">Nanotech</button>
+    <button class="filter-btn" data-filter="vibranium">Vibranium</button>
+    <button class="filter-btn" data-filter="asgardian">Asgardian</button>
+    <button class="filter-btn" data-filter="tactical">Tactical</button>
+    <button class="filter-btn" data-filter="casual">Casual</button>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Black Panther Suit -->
+    <div class="product-card featured-card" data-category="vibranium">
+      <div class="product-badge badge-new">Vibranium Weave</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080808,#10080d);font-size:7rem;width:300px;flex-shrink:0;">
+        🐾
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff44,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">T'Challa — Black Panther, King of Wakanda</div>
+        <div class="product-name">Panther Habit — Vibranium Nanoweave</div>
+        <div class="product-desc">The Black Panther Habit is woven from Wakandan vibranium nanofibers — the most advanced fabric in existence. Kinetic energy is absorbed on impact and stored in a distributed capacitor network, then discharged as a concussive blast at will. Shuri's purple variant available on request. Custom fitted in Wakanda only.</div>
+        <ul class="product-specs">
+          <li>Material: Vibranium nanofiber weave</li>
+          <li>Absorption: Kinetic energy — full body</li>
+          <li>Discharge: Concussive blast mode</li>
+          <li>Stealth: Adaptive light-scatter coating</li>
+          <li>Fitting: Custom only — Wakanda visit required</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">XS</button>
+          <button class="size-btn active">S</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$340,000<small>Custom Wakanda fitting</small></div>
+          <button class="add-btn" onclick="addToCart('Panther Habit Vibranium', 340000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spider-Man Suit -->
+    <div class="product-card" data-category="nanotech">
+      <div class="product-badge badge-new">Stark-Enhanced</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#180808,#200a0a)">
+        🕷️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff333333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Peter Parker — Spider-Man</div>
+        <div class="product-name">Spider-Man Suit — Stark Edition</div>
+        <div class="product-desc">Aerogel-lined stealth fabric. Karen AI assistant built in via earpiece system. 576 micro web-shooter ports across the suit. Instant-Kill mode disabled for retail. Available in S/M/L/XL.</div>
+        <ul class="product-specs">
+          <li>Fabric: Aerogel stealth weave</li>
+          <li>AI: Karen assistant — mission support</li>
+          <li>Web ports: 576 micro-emitters</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$46,000<small>Instant-Kill mode locked</small></div>
+          <button class="add-btn" onclick="addToCart('Spider-Man Stark Suit', 46000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ant-Man Suit -->
+    <div class="product-card" data-category="nanotech">
+      <div class="product-img" style="background:linear-gradient(135deg,#0a120a,#0f1a0f)">
+        🐜
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff4433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Scott Lang — Ant-Man</div>
+        <div class="product-name">Ant-Man Suit — Gen 3</div>
+        <div class="product-desc">Integrated Pym particle regulator built into chest plate. Ant communication helmet included. Full body shrink-expand capability. Air filtration system at subatomic scale. Compatible with Wasp wing attachment.</div>
+        <ul class="product-specs">
+          <li>Pym regulator: Chest-integrated</li>
+          <li>Helmet: Ant-comm array included</li>
+          <li>Range: Subatomic to 65 ft</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+          <button class="size-btn">XXL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$95,000<small>Pym Particles not included</small></div>
+          <button class="add-btn" onclick="addToCart('Ant-Man Suit Gen 3', 95000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thor Cape -->
+    <div class="product-card" data-category="asgardian">
+      <div class="product-badge badge-new">Asgardian Import</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0a18,#10101a)">
+        🌩️
+        <div class="item-glow" style="background:radial-gradient(circle,#4466ffaa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson — God of Thunder</div>
+        <div class="product-name">Asgardian Battle Cape — Royal Crimson</div>
+        <div class="product-desc">Woven from enchanted Asgardian silk by the weavers of Nidavellir. Static-resistant, thunder-proof lining. Attaches via shoulder armor clasps. One size fits all — including Asgardian physiology.</div>
+        <ul class="product-specs">
+          <li>Material: Enchanted Asgardian silk</li>
+          <li>Properties: Static-resistant, thunder-proof</li>
+          <li>Clasp: Shoulder armor mount</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn active">One Size</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$14,500<small>Asgard certificate included</small></div>
+          <button class="add-btn" onclick="addToCart('Asgardian Battle Cape', 14500)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Captain America Uniform -->
+    <div class="product-card" data-category="tactical">
+      <div class="product-img" style="background:linear-gradient(135deg,#080a18,#0a0d20)">
+        🦅
+        <div class="item-glow" style="background:radial-gradient(circle,#4455ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Steve Rogers — Captain America</div>
+        <div class="product-name">Captain America Uniform — WWII Issue</div>
+        <div class="product-desc">Kevlar-chainmail weave from S.H.I.E.L.D.-modified tactical fabric. Moisture wicking inner lining. Classic blue/red/white star pattern. Padded shoulder guards. Exact WWII-era coloring with S.H.I.E.L.D. Avengers upgrade.</div>
+        <ul class="product-specs">
+          <li>Outer: Kevlar-chainmail weave</li>
+          <li>Inner: Moisture-wick lining</li>
+          <li>Pattern: WWII + Avengers edition</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+          <button class="size-btn">2XL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$9,800<small>All sizes in stock</small></div>
+          <button class="add-btn" onclick="addToCart('Captain America Uniform', 9800)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wasp Wings -->
+    <div class="product-card" data-category="nanotech">
+      <div class="product-badge badge-limited">Hope's Design</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d0818,#100a1a)">
+        🦋
+        <div class="item-glow" style="background:radial-gradient(circle,#ff44aa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Hope Van Dyne — The Wasp</div>
+        <div class="product-name">Wasp Wings — Bio-Synthetic Flight Harness</div>
+        <div class="product-desc">Iridescent bio-synthetic wing membrane designed by Hope Van Dyne. Full 360° flight at micro-scale. 0 to 60 mph in 0.3 seconds. Bioelectric sting emitters integrated in suit cuffs. Co-signed by Hank Pym.</div>
+        <ul class="product-specs">
+          <li>Speed: 0–60 mph in 0.3 seconds</li>
+          <li>Flight: 360° omni-directional</li>
+          <li>Stingers: Bioelectric cuff emitters</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">XS</button>
+          <button class="size-btn active">S</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn">L</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$78,000<small>Pym integration required</small></div>
+          <button class="add-btn" onclick="addToCart('Wasp Wing Harness', 78000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hawkeye Tactical Vest -->
+    <div class="product-card" data-category="tactical">
+      <div class="product-img" style="background:linear-gradient(135deg,#0d150d,#101a10)">
+        🏹
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff6633,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Clint Barton — Hawkeye / Ronin</div>
+        <div class="product-name">Hawkeye Tactical Vest — Field Issue</div>
+        <div class="product-desc">48-pocket arrow/gadget tactical vest. Carbon-fiber plate inserts. Shoulder-mounted quiver mount system. Reversible — Hawkeye purple or Ronin black. Machine washable at 30°C.</div>
+        <ul class="product-specs">
+          <li>Pockets: 48 — arrow-spec fitted</li>
+          <li>Plates: Carbon-fiber ballistic inserts</li>
+          <li>Quiver: Shoulder-mount compatible</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$4,200<small>Reversible Hawkeye/Ronin</small></div>
+          <button class="add-btn" onclick="addToCart('Hawkeye Tactical Vest', 4200)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Black Widow Suit -->
+    <div class="product-card" data-category="tactical">
+      <div class="product-img" style="background:linear-gradient(135deg,#080808,#100808)">
+        ⚡
+        <div class="item-glow" style="background:radial-gradient(circle,#ff44aa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Natasha Romanoff — Black Widow</div>
+        <div class="product-name">Black Widow Tactical Suit — Red Room</div>
+        <div class="product-desc">Ultra-light tactical suit from Red Room specification. Polymer weave over memory-foam padding. Integrated Widow's Bite conduit channels (stingers sold separately). Full-body mobility rated. S.H.I.E.L.D. clearance required.</div>
+        <ul class="product-specs">
+          <li>Material: Polymer-foam composite weave</li>
+          <li>Mobility: Full articulation rated</li>
+          <li>Conduits: Widow's Bite integrated</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">XS</button>
+          <button class="size-btn active">S</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn">L</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$22,000<small>Level 4 clearance required</small></div>
+          <button class="add-btn" onclick="addToCart('Black Widow Suit', 22000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stark Casual Tee -->
+    <div class="product-card" data-category="casual">
+      <div class="product-badge badge-gold">Merch Drop</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#100808,#181010)">
+        👕
+        <div class="item-glow" style="background:radial-gradient(circle,#ff663333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Stark Industries Casual</div>
+        <div class="product-name">SI Logo Tee — Arc Reactor Edition</div>
+        <div class="product-desc">100% Egyptian cotton. Glowing arc reactor logo screen-printed in phosphorescent ink — charges in sunlight, glows in dark. "I am Iron Man" printed on inside collar. Unisex sizing. Machine washable.</div>
+        <ul class="product-specs">
+          <li>Material: 100% Egyptian cotton</li>
+          <li>Logo: Phosphorescent glow-in-dark</li>
+          <li>Fit: Unisex — relaxed</li>
+        </ul>
+        <div class="size-row">
+          <button class="size-btn">XS</button>
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+          <button class="size-btn">4XL</button>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$85<small>Glow logo included</small></div>
+          <button class="add-btn" onclick="addToCart('SI Arc Reactor Tee', 85)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html" style="font-size:0.95rem"><div class="logo-arc" style="width:26px;height:26px"></div>STARK INDUSTRIES</a>
+      <p>Official merchandise from Earth's Mightiest Heroes. S.H.I.E.L.D. certified. Asgardian approved. Wakandan sourced.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul>
+      <li><a href="weapons.html">Weapons</a></li>
+      <li><a href="tech.html">Technology</a></li>
+      <li><a href="tools.html">Hero Tools</a></li>
+      <li><a href="clothing.html">Suits & Clothing</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Apparel By Hero</h4><ul>
+      <li><a href="#">Black Panther</a></li>
+      <li><a href="#">Spider-Man</a></li>
+      <li><a href="#">Thor</a></li>
+      <li><a href="#">The Wasp</a></li>
+      <li><a href="#">Black Widow</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Info</h4><ul>
+      <li><a href="#">Size Guide</a></li>
+      <li><a href="#">Care Instructions</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">Contact Fury</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stark Industries — Avengers Division. All rights reserved.</span>
+    <span>🌍 Earth-616 — Dispatching to All Realms</span>
+  </div>
+</footer>
+
+<div class="cart-notif" id="cartNotif"></div>
+<script src="cart.js"></script>
+<script>
+// Size button toggle
+document.querySelectorAll('.size-row').forEach(row => {
+  row.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      row.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
+</script>
+</body>
+</html>
