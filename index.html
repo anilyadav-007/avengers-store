@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARK INDUSTRIES — Avengers Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #f0c040;
+  --red: #c0392b;
+  --blue: #1a6fb5;
+  --dark: #080c12;
+  --darker: #040608;
+  --panel: #0d1520;
+  --panel2: #111b28;
+  --border: #1e3a5f;
+  --glow-gold: 0 0 18px #f0c04088, 0 0 40px #f0c04033;
+  --glow-blue: 0 0 18px #1a6fb588, 0 0 40px #1a6fb533;
+  --glow-red: 0 0 18px #c0392b88, 0 0 40px #c0392b33;
+  --text: #cce4f7;
+  --muted: #5a7fa0;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--darker);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* SCANLINE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* NOISE TEXTURE */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
+
+/* ─── HEADER ─── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(4,6,8,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 70px;
+}
+
+.logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-shadow: var(--glow-gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-arc {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #5af, #1a6fb5 50%, #0a2040);
+  box-shadow: 0 0 20px #5af, 0 0 40px #1a6fb5;
+  animation: arcPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes arcPulse {
+  0%, 100% { box-shadow: 0 0 20px #5af, 0 0 40px #1a6fb5; }
+  50% { box-shadow: 0 0 35px #88ddff, 0 0 70px #1a6fb5, 0 0 10px #fff; }
+}
+
+nav { display: flex; gap: 2.5rem; align-items: center; }
+
+nav a {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+nav a:hover { color: var(--gold); text-shadow: var(--glow-gold); }
+
+.nav-cart {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-family: 'Orbitron', monospace;
+  transition: all 0.3s;
+}
+.nav-cart:hover { background: var(--gold); color: var(--darker); box-shadow: var(--glow-gold); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding: 80px 2rem 2rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, #0a1a30 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, #1a0a0a 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 20%, #0a1020 0%, transparent 60%),
+    var(--darker);
+}
+
+/* Hexagonal grid background */
+.hero-hex {
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,2 78,22 78,70 40,90 2,70 2,22' fill='none' stroke='%231e3a5f' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 80px 92px;
+  opacity: 0.4;
+  animation: hexScroll 40s linear infinite;
+}
+@keyframes hexScroll { to { background-position: 160px 184px; } }
+
+.hero-shield {
+  font-size: 9rem;
+  margin-bottom: 1rem;
+  animation: heroFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px #f0c04066);
+  position: relative;
+  z-index: 1;
+}
+@keyframes heroFloat {
+  0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-18px) rotate(2deg)}
+}
+
+.hero h1 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #f0c040 0%, #fff 40%, #f0c040 70%, #e07820 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.3em;
+}
+
+.hero-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 2px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--gold);
+}
+
+.hero-cta {
+  display: inline-flex;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, #e07820 100%);
+  color: var(--darker);
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: var(--glow-gold);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px #f0c040aa, 0 0 60px #f0c04055; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  padding: 13px 36px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: var(--blue); color: #88ccff; box-shadow: var(--glow-blue); }
+
+/* ─── SECTION HEADINGS ─── */
+.section-label {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+.section-label::after {
+  content: '';
+  display: block;
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1rem auto 0;
+}
+
+.section-label .eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-label h2 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  color: var(--gold);
+  text-shadow: var(--glow-gold);
+}
+
+/* ─── CATEGORIES ─── */
+.categories-section {
+  padding: 6rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.cat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(240,192,64,0.07));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cat-card:hover::before { opacity: 1; }
+.cat-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--glow-gold); }
+
+.cat-icon { font-size: 3.2rem; margin-bottom: 1rem; display: block; }
+.cat-name {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.cat-count {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ─── FEATURED / PRODUCTS ─── */
+.products-section {
+  padding: 4rem 3rem 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  padding: 8px 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(240,192,64,0.08);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover { border-color: #2a5a8a; transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.5), var(--glow-blue); }
+
+.product-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.badge-new { background: var(--blue); color: #fff; }
+.badge-limited { background: var(--red); color: #fff; }
+.badge-classified { background: #1a0a20; border: 1px solid #6040a0; color: #b090ff; }
+
+.product-img {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  background: var(--panel2);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.product-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to top, var(--panel), transparent);
+}
+
+.product-img .item-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.product-card:hover .item-glow { opacity: 1; }
+
+.product-body {
+  padding: 1.2rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-hero { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); font-family: 'Share Tech Mono', monospace; text-transform: uppercase; margin-bottom: 0.4rem; }
+.product-name {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.product-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.product-price {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+.product-price small { font-size: 0.65rem; color: var(--muted); display: block; font-family: 'Share Tech Mono', monospace; letter-spacing: 0.1em; }
+
+.add-btn {
+  background: transparent;
+  border: 1px solid var(--blue);
+  color: #88ccff;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.25s;
+}
+.add-btn:hover { background: var(--blue); color: #fff; box-shadow: var(--glow-blue); }
+
+/* ─── HERO SHOWCASE (Iron Man) ─── */
+.showcase {
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #0a0f18 0%, #0d1a30 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 70% 50%, #1a3060 0%, transparent 70%);
+}
+
+.showcase-text { max-width: 480px; position: relative; z-index: 1; }
+.showcase-eyebrow { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; letter-spacing: 0.4em; color: var(--blue); margin-bottom: 1rem; text-transform: uppercase; }
+.showcase-text h2 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+.showcase-text h2 span { color: var(--gold); }
+.showcase-text p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; font-size: 0.95rem; }
+
+.spec-list { list-style: none; margin-bottom: 2rem; }
+.spec-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(30,58,95,0.4);
+  font-size: 0.85rem;
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+}
+.spec-list li::before { content: '▸'; color: var(--gold); font-size: 0.7rem; }
+
+.showcase-visual {
+  font-size: 12rem;
+  position: relative;
+  z-index: 1;
+  animation: suitFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 40px #1a6fb5aa);
+}
+@keyframes suitFloat {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)}
+}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+  padding: 6rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.testimonial {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+}
+.testimonial::before {
+  content: '"';
+  font-family: 'Orbitron', monospace;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.2;
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  line-height: 1;
+}
+
+.testimonial p { font-size: 0.9rem; line-height: 1.6; color: var(--muted); margin-bottom: 1.5rem; position: relative; z-index: 1; }
+.testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 2px solid var(--border); background: var(--panel2); }
+.author-name { font-family: 'Orbitron', monospace; font-size: 0.75rem; color: var(--gold); }
+.author-title { font-size: 0.7rem; color: var(--muted); font-family: 'Share Tech Mono', monospace; }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--gold);
+  text-shadow: var(--glow-gold);
+}
+.stat-label { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.3rem; }
+
+/* ─── NEWSLETTER ─── */
+.newsletter {
+  padding: 6rem 3rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.newsletter h2 { font-family: 'Orbitron', monospace; font-weight: 700; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.8rem; }
+.newsletter p { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.6; }
+
+.email-row {
+  display: flex;
+  gap: 0.8rem;
+}
+.email-input {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  padding: 12px 18px;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-input:focus { border-color: var(--blue); }
+.email-input::placeholder { color: var(--muted); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 4rem 3rem 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-top: 1rem; max-width: 260px; }
+
+.footer-col h4 {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.6rem; }
+.footer-col ul li a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--text); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ─── CART NOTIFICATION ─── */
+.cart-notif {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--panel);
+  border: 1px solid var(--gold);
+  box-shadow: var(--glow-gold);
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--gold);
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cart-notif.show { transform: translateY(0); opacity: 1; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .showcase { flex-direction: column; text-align: center; gap: 2rem; }
+}
+@media (max-width: 768px) {
+  header { padding: 0 1.5rem; }
+  nav { display: none; }
+  .hero h1 { font-size: 2.5rem; }
+  .categories-section, .products-section, .testimonials { padding: 3rem 1.5rem; }
+  .stats-bar { flex-wrap: wrap; gap: 2rem; padding: 2rem; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .showcase { padding: 3rem 1.5rem; }
+  .showcase-visual { font-size: 7rem; }
+  .email-row { flex-direction: column; }
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero-sub, .hero-badges, .hero-cta, .hero-shield {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-shield { animation-delay: 0s; }
+.hero h1 { animation-delay: 0.2s; }
+.hero-sub { animation-delay: 0.35s; }
+.hero-badges { animation-delay: 0.5s; }
+.hero-cta { animation-delay: 0.65s; }
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-ind {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0.5;
+  animation: scrollBounce 2s ease-in-out infinite;
+  z-index: 1;
+}
+.scroll-ind span { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
+@keyframes scrollBounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+/* Line glow */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), var(--gold), var(--border), transparent);
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-arc"></div>
+    STARK INDUSTRIES
+  </a>
+  <nav>
+    <a href="#weapons">Weapons</a>
+    <a href="#tech">Tech</a>
+    <a href="#tools">Tools</a>
+    <a href="#clothing">Clothing</a>
+    <a href="#about">About</a>
+  </nav>
+  <button class="nav-cart" onclick="showCartNotif('Cart opened — 0 items')">⚡ CART (0)</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-hex"></div>
+
+  <div class="hero-shield">🛡️</div>
+  <h1>AVENGERS<br>STORE</h1>
+  <p class="hero-sub">// Official Authorized Merchandise — Earth's Mightiest Heroes</p>
+
+  <div class="hero-badges">
+    <span class="badge">▸ S.H.I.E.L.D. Certified</span>
+    <span class="badge">▸ Stark-Tech Powered</span>
+    <span class="badge">▸ Wakanda Approved</span>
+    <span class="badge">▸ Asgardian Grade</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#weapons" class="btn-primary">Shop Now</a>
+    <a href="#about" class="btn-secondary">Learn More</a>
+  </div>
+
+  <div class="scroll-ind">
+    <span>SCROLL</span>
+    <span>▼</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">247+</div><div class="stat-label">Hero-Grade Products</div></div>
+  <div class="stat"><div class="stat-num">14</div><div class="stat-label">Avengers Heroes</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Stones Sold</div></div>
+  <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Villain Deterrence</div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+  <div class="section-label">
+    <p class="eyebrow">// Browse by Division</p>
+    <h2>HERO CATEGORIES</h2>
+  </div>
+
+  <div class="categories-grid">
+    <a href="#weapons" class="cat-card">
+      <span class="cat-icon">⚔️</span>
+      <div class="cat-name">Weapons & Armaments</div>
+      <div class="cat-count">62 items classified</div>
+    </a>
+    <a href="#tech" class="cat-card">
+      <span class="cat-icon">🤖</span>
+      <div class="cat-name">Stark Technology</div>
+      <div class="cat-count">85 items in stock</div>
+    </a>
+    <a href="#tools" class="cat-card">
+      <span class="cat-icon">🛠️</span>
+      <div class="cat-name">Hero Tools & Gear</div>
+      <div class="cat-count">48 items available</div>
+    </a>
+    <a href="#clothing" class="cat-card">
+      <span class="cat-icon">🦸</span>
+      <div class="cat-name">Suits & Clothing</div>
+      <div class="cat-count">52 items in stock</div>
+    </a>
+  </div>
+</section>
+
+<!-- WEAPONS SECTION -->
+<div class="divider"></div>
+<section class="products-section" id="weapons">
+  <div class="section-label">
+    <p class="eyebrow">// Division: Weapons & Armaments</p>
+    <h2>WEAPONS VAULT</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn" onclick="toggleFilter(this)">Asgardian</button>
+    <button class="filter-btn" onclick="toggleFilter(this)">Stark-Made</button>
+    <button class="filter-btn" onclick="toggleFilter(this)">Wakandan</button>
+    <button class="filter-btn" onclick="toggleFilter(this)">S.H.I.E.L.D.</button>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Mjolnir -->
+    <div class="product-card">
+      <div class="product-badge badge-limited">Limited</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d1a2a,#1a2030)">
+        ⚡
+        <div class="item-glow" style="background:radial-gradient(circle,#aac0ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson</div>
+        <div class="product-name">Mjolnir — Uru War Hammer</div>
+        <div class="product-desc">Forged in the heart of a dying star. Enchanted by Odin. Grants the power of thunder. Only the worthy may lift it.</div>
+        <div class="product-footer">
+          <div class="product-price">$47,999<small>Free Asgardian shipping</small></div>
+          <button class="add-btn" onclick="addToCart('Mjolnir')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Captain America Shield -->
+    <div class="product-card">
+      <div class="product-badge badge-new">New Stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0d1a,#1a1a30)">
+        🛡️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff444433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Steve Rogers</div>
+        <div class="product-name">Vibranium Shield — Mark I</div>
+        <div class="product-desc">Pure Wakandan vibranium. Absorbs kinetic energy. 24-inch diameter. Custom star inlay. Battle-tested across seven decades.</div>
+        <div class="product-footer">
+          <div class="product-price">$89,500<small>Government ID required</small></div>
+          <button class="add-btn" onclick="addToCart('Shield')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hawkeye Bow -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#0d150d,#101a10)">
+        🏹
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff6633,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Clint Barton</div>
+        <div class="product-name">Recurve Compound Bow — Pro Series</div>
+        <div class="product-desc">Collapsible titanium frame. 200 lb draw weight. Smart-targeting scope. Compatible with Stark arrow heads.</div>
+        <div class="product-footer">
+          <div class="product-price">$12,300<small>Includes 24 arrows</small></div>
+          <button class="add-btn" onclick="addToCart('Hawkeye Bow')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Black Widow Stingers -->
+    <div class="product-card">
+      <div class="product-badge badge-classified">Classified</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#12080d,#1a0a14)">
+        ⚡
+        <div class="item-glow" style="background:radial-gradient(circle,#ff44aa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Natasha Romanoff</div>
+        <div class="product-name">Widow's Bite — Wrist Stingers</div>
+        <div class="product-desc">Electroshock wristbands delivering 30,000 volts. Adjustable intensity. Red Room issue. S.H.I.E.L.D. clearance required.</div>
+        <div class="product-footer">
+          <div class="product-price">$8,750<small>Pair — Level 5 clearance</small></div>
+          <button class="add-btn" onclick="addToCart('Widow Stingers')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stormbreaker -->
+    <div class="product-card">
+      <div class="product-badge badge-limited">1 in stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0d1a,#0d1020)">
+        🪓
+        <div class="item-glow" style="background:radial-gradient(circle,#6699ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson</div>
+        <div class="product-name">Stormbreaker — Battle Axe</div>
+        <div class="product-desc">Groot handle. Uru blade. Bifrost-capable. Can channel the full power of a neutron star. Comes with Nidavellir certificate.</div>
+        <div class="product-footer">
+          <div class="product-price">$310,000<small>One-time Bifrost pass included</small></div>
+          <button class="add-btn" onclick="addToCart('Stormbreaker')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loki Scepter -->
+    <div class="product-card">
+      <div class="product-badge badge-classified">Classified</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d120a,#101508)">
+        🔱
+        <div class="item-glow" style="background:radial-gradient(circle,#ccff3333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Loki Laufeyson</div>
+        <div class="product-name">Chitauri Scepter — Replica</div>
+        <div class="product-desc">Certified non-enchanted replica. Gold-tone vibranium alloy staff. Mind Stone placeholder (stone not included). 6 ft length.</div>
+        <div class="product-footer">
+          <div class="product-price">$5,200<small>Mind Stone sold separately</small></div>
+          <button class="add-btn" onclick="addToCart('Scepter Replica')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TECH SECTION -->
+<div class="divider"></div>
+<section class="products-section" id="tech">
+  <div class="section-label">
+    <p class="eyebrow">// Division: Stark Technology</p>
+    <h2>TECH ARSENAL</h2>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Iron Man Suit -->
+    <div class="product-card">
+      <div class="product-badge badge-new">Mark L</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#1a0a0a,#200d0a)">
+        🤖
+        <div class="item-glow" style="background:radial-gradient(circle,#ff663333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Iron Man Suit — Mark L (50)</div>
+        <div class="product-desc">Nano-particle assembly. Full HUD with FRIDAY AI. Repulsor beam hands. Flight capability. Automatically sizes to wearer.</div>
+        <div class="product-footer">
+          <div class="product-price">$1,200,000<small>Financing available</small></div>
+          <button class="add-btn" onclick="addToCart('Iron Man Suit')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arc Reactor -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#081218,#0d1a24)">
+        💎
+        <div class="item-glow" style="background:radial-gradient(circle,#44aaffaa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Arc Reactor — Gen 3</div>
+        <div class="product-desc">Palladium-free design. Generates 3 gigawatts. Powers a city block or one suit. Chest mount not required. Glows in the dark.</div>
+        <div class="product-footer">
+          <div class="product-price">$220,000<small>12-month warranty</small></div>
+          <button class="add-btn" onclick="addToCart('Arc Reactor')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pym Particles -->
+    <div class="product-card">
+      <div class="product-badge badge-limited">Low Stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d100d,#121a12)">
+        🔬
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff8833,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Hank Pym / Scott Lang</div>
+        <div class="product-name">Pym Particles — Vial Set</div>
+        <div class="product-desc">Shrink to subatomic. Grow to 65 ft. Red vials shrink. Blue vials enlarge. 10 doses per vial. Handle with extreme care.</div>
+        <div class="product-footer">
+          <div class="product-price">$4,500/vial<small>Set of 4 — mixed colors</small></div>
+          <button class="add-btn" onclick="addToCart('Pym Particles')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Time Stone -->
+    <div class="product-card">
+      <div class="product-badge badge-classified">Infinity Item</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#0d1a0a)">
+        🔮
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff4433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Doctor Strange</div>
+        <div class="product-name">Eye of Agamotto — Replica</div>
+        <div class="product-desc">18k gold plated. Inert replica of Time Stone housing. Rotating mechanism intact. No actual time manipulation included.</div>
+        <div class="product-footer">
+          <div class="product-price">$3,800<small>Time Stone not included</small></div>
+          <button class="add-btn" onclick="addToCart('Eye of Agamotto')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quantum Tunnel -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#080a18,#0d1020)">
+        🌀
+        <div class="item-glow" style="background:radial-gradient(circle,#8844ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Scott Lang / Tony Stark</div>
+        <div class="product-name">Quantum Tunnel Device</div>
+        <div class="product-desc">Access the Quantum Realm. Navigate through time. GPS-linked return beacon. Requires Pym Particles (sold separately).</div>
+        <div class="product-footer">
+          <div class="product-price">$650,000<small>Installation service included</small></div>
+          <button class="add-btn" onclick="addToCart('Quantum Tunnel')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gauntlet Replica -->
+    <div class="product-card">
+      <div class="product-badge badge-limited">Collector's</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#18100a,#201508)">
+        🧤
+        <div class="item-glow" style="background:radial-gradient(circle,#ffaa2233,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Nano Gauntlet — Display Replica</div>
+        <div class="product-desc">1:1 scale. Nanotech finish. Six stone slots with colored resin stones. LED lighting. Stark Industries certificate of authenticity.</div>
+        <div class="product-footer">
+          <div class="product-price">$18,000<small>Signed by Robert D. Jr.</small></div>
+          <button class="add-btn" onclick="addToCart('Nano Gauntlet')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IRON MAN SHOWCASE -->
+<section class="showcase">
+  <div class="showcase-bg"></div>
+  <div class="showcase-text">
+    <div class="showcase-eyebrow">// Featured Product — Mark L</div>
+    <h2>THE IRON MAN<br><span>MARK 50 SUIT</span></h2>
+    <p>The pinnacle of Stark engineering. Housed in a nanotech chest piece, the Mark 50 assembles around the wearer in under 2 seconds. Onboard FRIDAY AI assists with targeting, navigation, and threat assessment.</p>
+    <ul class="spec-list">
+      <li>Nanoparticle assembly — 2 sec full deployment</li>
+      <li>Repulsor output: 3.2 gigajoules per hand</li>
+      <li>Flight ceiling: 115,000 ft / Mach 2.5</li>
+      <li>FRIDAY AI — Level 7 threat assessment</li>
+      <li>Self-repair via nano-restoration protocol</li>
+      <li>Quantum field shielding — absorbs 40 tons impact</li>
+    </ul>
+    <a href="#tech" class="btn-primary">View Full Specs</a>
+  </div>
+  <div class="showcase-visual">🤖</div>
+</section>
+
+<!-- TOOLS SECTION -->
+<div class="divider"></div>
+<section class="products-section" id="tools">
+  <div class="section-label">
+    <p class="eyebrow">// Division: Hero Tools & Gear</p>
+    <h2>HERO TOOLS</h2>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Stark Glasses -->
+    <div class="product-card">
+      <div class="product-badge badge-new">EDITH Edition</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0d1524)">
+        🕶️
+        <div class="item-glow" style="background:radial-gradient(circle,#4488ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark / Peter Parker</div>
+        <div class="product-name">E.D.I.T.H. Smart Glasses</div>
+        <div class="product-desc">Even Dead I'm The Hero. Satellite access. Drone strike authorization. Facial recognition. Threat mapping. Prescription lenses available.</div>
+        <div class="product-footer">
+          <div class="product-price">$58,000<small>Military-grade AI included</small></div>
+          <button class="add-btn" onclick="addToCart('EDITH Glasses')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Shooters -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#101018,#141420)">
+        🕷️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff4444aa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Peter Parker</div>
+        <div class="product-name">Web-Shooters — Stark Edition</div>
+        <div class="product-desc">360 PSI synthetic web fluid. 50-cartridge capacity. 8 programmable web patterns. Wrist-mounted. Spider-web tensile: 120 tons.</div>
+        <div class="product-footer">
+          <div class="product-price">$7,200<small>Includes 200 web cartridges</small></div>
+          <button class="add-btn" onclick="addToCart('Web Shooters')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- S.H.I.E.L.D. Badge -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#0d100d,#121512)">
+        🪪
+        <div class="item-glow" style="background:radial-gradient(circle,#aaaaaa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Nick Fury / S.H.I.E.L.D.</div>
+        <div class="product-name">S.H.I.E.L.D. Agent Badge</div>
+        <div class="product-desc">Biometric-locked titanium alloy badge. Grants access to 847 classified facilities. Helicarrier deck pass included. Level 6 clearance.</div>
+        <div class="product-footer">
+          <div class="product-price">$3,400<small>Background check required</small></div>
+          <button class="add-btn" onclick="addToCart('Shield Badge')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kimoyo Beads -->
+    <div class="product-card">
+      <div class="product-badge badge-new">Wakanda Export</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0a1022)">
+        📿
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">T'Challa / Shuri</div>
+        <div class="product-name">Kimoyo Beads — Communication Set</div>
+        <div class="product-desc">Vibranium-lattice bead bracelet. Holographic display. Medical monitoring. Shuri's signature interface. Wakandan tech export — limited.</div>
+        <div class="product-footer">
+          <div class="product-price">$24,000<small>Direct from Wakanda</small></div>
+          <button class="add-btn" onclick="addToCart('Kimoyo Beads')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quinjet Keycard -->
+    <div class="product-card">
+      <div class="product-badge badge-classified">Level 7 Only</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080d18,#0d1018)">
+        ✈️
+        <div class="item-glow" style="background:radial-gradient(circle,#4466ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">S.H.I.E.L.D.</div>
+        <div class="product-name">Quinjet Access Card</div>
+        <div class="product-desc">Grants piloting authorization for the S.T.R.I.K.E. Quinjet fleet. Cloaking mode bypass key. Mach 2.5 capable craft. Level 7 required.</div>
+        <div class="product-footer">
+          <div class="product-price">$1,800<small>Pilot license required</small></div>
+          <button class="add-btn" onclick="addToCart('Quinjet Card')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hulk Buster Gauntlet -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#180a08,#201008)">
+        👊
+        <div class="item-glow" style="background:radial-gradient(circle,#ff882233,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Hulkbuster Gauntlet — Veronica</div>
+        <div class="product-desc">Exo-frame fist attachment. 150 ton punch force amplification. Vibration dampeners. Integrates with any Iron Man suit. Size adjustable.</div>
+        <div class="product-footer">
+          <div class="product-price">$430,000<small>Single gauntlet unit</small></div>
+          <button class="add-btn" onclick="addToCart('Hulkbuster Gauntlet')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOTHING SECTION -->
+<div class="divider"></div>
+<section class="products-section" id="clothing">
+  <div class="section-label">
+    <p class="eyebrow">// Division: Suits & Apparel</p>
+    <h2>HERO WARDROBE</h2>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Black Panther Suit -->
+    <div class="product-card">
+      <div class="product-badge badge-new">Vibranium Weave</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080808,#10080d)">
+        🐾
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">T'Challa — Black Panther</div>
+        <div class="product-name">Panther Habit — Vibranium Weave</div>
+        <div class="product-desc">Woven vibranium nanofibers. Kinetic energy absorption and redistribution. Claw retraction system. Shuri-designed stealth coating. All sizes.</div>
+        <div class="product-footer">
+          <div class="product-price">$340,000<small>Custom fitted in Wakanda</small></div>
+          <button class="add-btn" onclick="addToCart('Panther Suit')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ant-Man Suit -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#0a120a,#0f1a0f)">
+        🐜
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff4433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Scott Lang / Hank Pym</div>
+        <div class="product-name">Ant-Man Suit — Gen 3</div>
+        <div class="product-desc">Integrated Pym particle regulator. Ant communication helmet. Full body shrink-expand capability. Air filtration at subatomic scale.</div>
+        <div class="product-footer">
+          <div class="product-price">$95,000<small>Pym Particles not included</small></div>
+          <button class="add-btn" onclick="addToCart('Ant-Man Suit')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thor Cape -->
+    <div class="product-card">
+      <div class="product-badge badge-new">Asgardian Import</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a0a18,#10101a)">
+        🌩️
+        <div class="item-glow" style="background:radial-gradient(circle,#4466ffaa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thor Odinson</div>
+        <div class="product-name">Asgardian Battle Cape</div>
+        <div class="product-desc">Woven from enchanted Asgardian silk. Static-resistant. Thunder-proof lining. Attaches via shoulder armor clasps. One size — godly.</div>
+        <div class="product-footer">
+          <div class="product-price">$14,500<small>Includes Asgard certificate</small></div>
+          <button class="add-btn" onclick="addToCart('Thor Cape')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spider-Man Suit -->
+    <div class="product-card">
+      <div class="product-badge badge-new">Stark-Enhanced</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#180808,#200a0a)">
+        🕷️
+        <div class="item-glow" style="background:radial-gradient(circle,#ff333333,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Peter Parker</div>
+        <div class="product-name">Spider-Man Suit — Stark Edition</div>
+        <div class="product-desc">Aerogel-lined stealth fabric. Karen AI assistant built-in. 576 web shooter ports. Instant-kill mode (disabled for retail). S/M/L/XL.</div>
+        <div class="product-footer">
+          <div class="product-price">$46,000<small>Instant-kill mode locked</small></div>
+          <button class="add-btn" onclick="addToCart('Spider-Man Suit')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cap Uniform -->
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#080a18,#0a0d20)">
+        🦅
+        <div class="item-glow" style="background:radial-gradient(circle,#4455ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Steve Rogers</div>
+        <div class="product-name">Captain America Uniform — WWII</div>
+        <div class="product-desc">Kevlar-chainmail weave. S.H.I.E.L.D.-modified tactical vest. Moisture wicking. Blue/red/white colorway. Stars-and-stripes pattern embossed.</div>
+        <div class="product-footer">
+          <div class="product-price">$9,800<small>All sizes in stock</small></div>
+          <button class="add-btn" onclick="addToCart('Cap Uniform')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wasp Wings -->
+    <div class="product-card">
+      <div class="product-badge badge-limited">Hope's Design</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d0818,#100a1a)">
+        🦋
+        <div class="item-glow" style="background:radial-gradient(circle,#ff44aa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Hope Van Dyne — The Wasp</div>
+        <div class="product-name">Wasp Wings — Flight Harness</div>
+        <div class="product-desc">Iridescent bio-synthetic wing membrane. 360° flight. 0–60 mph in 0.3 sec at micro-scale. Bioelectric sting emitters. Hope Van Dyne signature.</div>
+        <div class="product-footer">
+          <div class="product-price">$78,000<small>Pym integration required</small></div>
+          <button class="add-btn" onclick="addToCart('Wasp Wings')">+ ADD</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="about">
+  <div class="section-label">
+    <p class="eyebrow">// Field Reports</p>
+    <h2>HERO REVIEWS</h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial">
+      <p>The Mjolnir replica's weight distribution is uncanny. Almost went full Asgardian mode at the gym. Would've given 5 stars but... I could actually lift it.</p>
+      <div class="testimonial-author">
+        <div class="avatar">⚡</div>
+        <div>
+          <div class="author-name">THOR O.</div>
+          <div class="author-title">God of Thunder — Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p>The arc reactor charges my entire compound. Shareholders are happy. FRIDAY loves her new home. Pepper is concerned about the number of delivery drones.</p>
+      <div class="testimonial-author">
+        <div class="avatar">🤖</div>
+        <div>
+          <div class="author-name">T. STARK</div>
+          <div class="author-title">CEO, Stark Industries — Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p>Vibranium shield quality is exceptional. The kinetic return angle is perfect within 2 degrees of the original. Would order again after the next battle.</p>
+      <div class="testimonial-author">
+        <div class="avatar">🛡️</div>
+        <div>
+          <div class="author-name">S. ROGERS</div>
+          <div class="author-title">Super Soldier — Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="section-label">
+    <p class="eyebrow">// Stay Classified</p>
+    <h2>INTEL DISPATCH</h2>
+  </div>
+  <p>Get first access to new hero-grade products, classified drops, and field intel. No spam — just mission-critical updates from Stark Tower.</p>
+  <div class="email-row">
+    <input type="email" class="email-input" placeholder="your@email.com — clearance required">
+    <button class="btn-primary" onclick="showCartNotif('Welcome to the team, Agent!')">ENLIST</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#" style="font-size:1rem">
+        <div class="logo-arc" style="width:28px;height:28px"></div>
+        STARK INDUSTRIES
+      </a>
+      <p>Official merchandise from Earth's Mightiest Heroes. All products are certified by S.H.I.E.L.D., the Avengers Initiative, and Wakandan Export Control.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#weapons">Weapons</a></li>
+        <li><a href="#tech">Technology</a></li>
+        <li><a href="#tools">Hero Tools</a></li>
+        <li><a href="#clothing">Suits & Clothing</a></li>
+        <li><a href="#">Collector's Items</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Heroes</h4>
+      <ul>
+        <li><a href="#">Iron Man</a></li>
+        <li><a href="#">Thor</a></li>
+        <li><a href="#">Black Panther</a></li>
+        <li><a href="#">Spider-Man</a></li>
+        <li><a href="#">Black Widow</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#">Clearance Levels</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">S.H.I.E.L.D. Verification</a></li>
+        <li><a href="#">Contact Fury</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stark Industries — Avengers Division. All rights reserved. Marvel characters used fictionally.</span>
+    <span>🌍 Earth-616 — Dispatching to All Realms</span>
+  </div>
+</footer>
+
+<!-- CART NOTIFICATION -->
+<div class="cart-notif" id="cartNotif">✓ Item added to cart</div>
+
+<script>
+let cartCount = 0;
+
+function addToCart(item) {
+  cartCount++;
+  document.querySelector('.nav-cart').textContent = `⚡ CART (${cartCount})`;
+  showCartNotif(`✓ ${item} added to cart`);
+}
+
+function showCartNotif(msg) {
+  const notif = document.getElementById('cartNotif');
+  notif.textContent = msg;
+  notif.classList.add('show');
+  setTimeout(() => notif.classList.remove('show'), 3000);
+}
+
+function toggleFilter(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Intersection observer for subtle card reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.product-card, .cat-card, .testimonial').forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(20px)';
+  card.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.35s, box-shadow 0.35s';
+  observer.observe(card);
+});
+</script>
+</body>
+</html>
