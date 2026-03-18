@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stark Technology — Avengers Store</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-banner { background: radial-gradient(ellipse 80% 60% at 50% 40%, #08101a, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, #0a0a1a, transparent 60%), var(--darker); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><div class="logo-arc"></div>STARK INDUSTRIES</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="weapons.html">Weapons</a>
+    <a href="tech.html">Tech</a>
+    <a href="tools.html">Tools</a>
+    <a href="clothing.html">Clothing</a>
+  </nav>
+  <button class="nav-cart">⚡ CART (0)</button>
+</header>
+
+<section class="page-banner">
+  <div class="hex-bg"></div>
+  <div class="banner-icon">🤖</div>
+  <p class="eyebrow">// Division — Stark Technology Lab</p>
+  <h1>TECH ARSENAL</h1>
+  <p>Next-generation Stark, Pym, and Wakandan technology. Classified access required for select items.</p>
+</section>
+
+<div class="divider"></div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">85</div><div class="stat-label">Tech Products</div></div>
+  <div class="stat"><div class="stat-num">50</div><div class="stat-label">Iron Man Suit Marks</div></div>
+  <div class="stat"><div class="stat-num">3GW</div><div class="stat-label">Arc Reactor Output</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Quantum Possibilities</div></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="products-section">
+  <div class="section-label">
+    <p class="eyebrow">// All Technology</p>
+    <h2>SELECT YOUR TECH</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="stark">Stark-Made</button>
+    <button class="filter-btn" data-filter="pym">Pym Tech</button>
+    <button class="filter-btn" data-filter="wakandan">Wakandan</button>
+    <button class="filter-btn" data-filter="mystic">Mystic</button>
+    <button class="filter-btn" data-filter="quantum">Quantum</button>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Iron Man Suit Mark L -->
+    <div class="product-card featured-card" data-category="stark">
+      <div class="product-badge badge-new">Mark L — Latest</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#1a0a0a,#200d0a);font-size:7rem;width:300px;flex-shrink:0;">
+        🤖
+        <div class="item-glow" style="background:radial-gradient(circle,#ff663355,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark — Iron Man</div>
+        <div class="product-name">Iron Man Suit — Mark L (50)</div>
+        <div class="product-desc">The magnum opus of Stark engineering. Nanoparticle-based assembly deploys from a chest-mounted housing in under 2 seconds. FRIDAY AI fully integrated. Repulsor-powered flight, energy beams, and quantum-shielded chassis. Automatically sizes to the wearer. The most advanced personal combat platform on any world.</div>
+        <ul class="product-specs">
+          <li>Assembly: Nanoparticle — 2 sec full deploy</li>
+          <li>Repulsors: 3.2 gigajoules per hand</li>
+          <li>Flight: Mach 2.5 / 115,000 ft ceiling</li>
+          <li>AI: FRIDAY — Level 7 threat assessment</li>
+          <li>Shield: Quantum field — 40 ton rated</li>
+          <li>Self-repair: Nano-restoration protocol</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$1,200,000<small>Financing available — 0% APR</small></div>
+          <button class="add-btn" onclick="addToCart('Iron Man Suit Mark L', 1200000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arc Reactor -->
+    <div class="product-card" data-category="stark">
+      <div class="product-img" style="background:linear-gradient(135deg,#081218,#0d1a24)">
+        💙
+        <div class="item-glow" style="background:radial-gradient(circle,#44aaffaa,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Arc Reactor — Generation 3</div>
+        <div class="product-desc">Palladium-free design. Generates 3 gigawatts continuously. Powers a city block indefinitely — or one Iron Man suit. Chest mount optional. Glows reassuringly in the dark.</div>
+        <ul class="product-specs">
+          <li>Output: 3 GW continuous</li>
+          <li>Core: Vibranium-stabilized fusion</li>
+          <li>Runtime: Indefinite</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$220,000<small>12-month warranty</small></div>
+          <button class="add-btn" onclick="addToCart('Arc Reactor Gen 3', 220000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pym Particles -->
+    <div class="product-card" data-category="pym">
+      <div class="product-badge badge-limited">Low Stock</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0d100d,#121a12)">
+        🔬
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff8833,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Hank Pym / Scott Lang</div>
+        <div class="product-name">Pym Particles — Vial Set</div>
+        <div class="product-desc">Shrink to subatomic. Grow to 65 ft. Red vials shrink. Blue vials enlarge. 10 doses per vial. Handle with extreme care — improper use may strand you in the Quantum Realm.</div>
+        <ul class="product-specs">
+          <li>Red vials: Shrink — subatomic range</li>
+          <li>Blue vials: Enlarge — up to 65 ft</li>
+          <li>Dose: 10 per vial</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$4,500/vial<small>Set of 4 — 2R + 2B</small></div>
+          <button class="add-btn" onclick="addToCart('Pym Particles Set', 18000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quantum Tunnel -->
+    <div class="product-card" data-category="quantum">
+      <div class="product-img" style="background:linear-gradient(135deg,#080a18,#0d1020)">
+        🌀
+        <div class="item-glow" style="background:radial-gradient(circle,#8844ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Scott Lang / Tony Stark</div>
+        <div class="product-name">Quantum Tunnel Device — Portable</div>
+        <div class="product-desc">Access the Quantum Realm. Navigate time via GPS-linked return beacon. Engineered by Stark Industries in collaboration with Hank Pym. Requires Pym Particles (sold separately). Do NOT use unsupervised.</div>
+        <ul class="product-specs">
+          <li>Access: Quantum Realm portal</li>
+          <li>Navigation: GPS time beacon</li>
+          <li>Power: Arc reactor compatible</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$650,000<small>Installation service included</small></div>
+          <button class="add-btn" onclick="addToCart('Quantum Tunnel Device', 650000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eye of Agamotto -->
+    <div class="product-card" data-category="mystic">
+      <div class="product-badge badge-classified">Sorcerer Access</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#0d1a0a)">
+        🔮
+        <div class="item-glow" style="background:radial-gradient(circle,#44ff4433,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Doctor Strange</div>
+        <div class="product-name">Eye of Agamotto — Housing Replica</div>
+        <div class="product-desc">18k gold-plated replica housing. Rotating mechanism fully intact. Inert display-grade Time Stone placeholder. Kamar-Taj approved replica. Actual time manipulation capability: none.</div>
+        <ul class="product-specs">
+          <li>Material: 18k gold plate over brass</li>
+          <li>Mechanism: Rotating — functional</li>
+          <li>Stone: Green resin replica</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$3,800<small>Time Stone not included</small></div>
+          <button class="add-btn" onclick="addToCart('Eye of Agamotto Replica', 3800)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nano Gauntlet -->
+    <div class="product-card" data-category="stark">
+      <div class="product-badge badge-gold">Collector's Edition</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#18100a,#201508)">
+        🧤
+        <div class="item-glow" style="background:radial-gradient(circle,#ffaa2233,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Tony Stark</div>
+        <div class="product-name">Nano Gauntlet — Display Replica</div>
+        <div class="product-desc">1:1 scale nanotech-finish replica. Six Infinity Stone slots with backlit colored resin stones. Internal LED lighting. Stark Industries certificate of authenticity. The most expensive paperweight in existence.</div>
+        <ul class="product-specs">
+          <li>Scale: 1:1 exact replica</li>
+          <li>Stones: LED-backlit resin — 6 colors</li>
+          <li>Certificate: Stark Industries signed</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$18,000<small>Robert D. Jr. signature ed.</small></div>
+          <button class="add-btn" onclick="addToCart('Nano Gauntlet Replica', 18000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- War Machine Suit -->
+    <div class="product-card" data-category="stark">
+      <div class="product-badge badge-classified">Mil. Export Restricted</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#101010,#181818)">
+        🦾
+        <div class="item-glow" style="background:radial-gradient(circle,#aaaaaa33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">James Rhodes — War Machine</div>
+        <div class="product-name">War Machine Suit — JRXL-1000</div>
+        <div class="product-desc">Military-hardened Stark chassis. Integrated weapons platform: Gatling cannon, missile pods, repulsors, and EMP emitter. Requires USAF clearance. Rhodey's personal configuration available upon request.</div>
+        <ul class="product-specs">
+          <li>Weapons: Gatling + missile + repulsors</li>
+          <li>Armor: Tungsten-vibranium composite</li>
+          <li>Power: Arc reactor Mk II</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$4,800,000<small>USAF clearance required</small></div>
+          <button class="add-btn" onclick="addToCart('War Machine Suit', 4800000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wakandan Tech Chip -->
+    <div class="product-card" data-category="wakandan">
+      <div class="product-badge badge-new">Shuri's Lab</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#080a18,#0d0d20)">
+        💠
+        <div class="item-glow" style="background:radial-gradient(circle,#aa44ff33,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Shuri — Princess of Wakanda</div>
+        <div class="product-name">Vibranium Neural Chip — Interface</div>
+        <div class="product-desc">Shuri-designed neural interface chip. Vibranium substrate. Direct brain-to-system communication. Controls suits, vehicles, and weapons systems through thought. Wakandan bioethics board approved.</div>
+        <ul class="product-specs">
+          <li>Interface: Direct neural — thought-controlled</li>
+          <li>Material: Vibranium nanofilm</li>
+          <li>Range: 10 km active control</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$340,000<small>Medical installation required</small></div>
+          <button class="add-btn" onclick="addToCart('Neural Interface Chip', 340000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infinity Gauntlet Housing -->
+    <div class="product-card" data-category="mystic">
+      <div class="product-badge badge-limited">Collector's Only</div>
+      <div class="product-img" style="background:linear-gradient(135deg,#18100a,#201408)">
+        ✨
+        <div class="item-glow" style="background:radial-gradient(circle,#ff880033,transparent 70%)"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-hero">Thanos / Nidavellir</div>
+        <div class="product-name">Infinity Gauntlet — Nidavellir Replica</div>
+        <div class="product-desc">Original Thanos Gauntlet design. Nidavellir uru-gold finish replica. Six stone sockets. Battle-worn variant available. Certified by Eitri — "I made him a gauntlet. This is not that." Full-size wearable.</div>
+        <ul class="product-specs">
+          <li>Material: Gold-finish uru replica</li>
+          <li>Stones: Six resin socket inlays</li>
+          <li>Certification: Eitri, Nidavellir</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$24,000<small>Battle-worn variant +$2,000</small></div>
+          <button class="add-btn" onclick="addToCart('Infinity Gauntlet Replica', 24000)">+ ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html" style="font-size:0.95rem"><div class="logo-arc" style="width:26px;height:26px"></div>STARK INDUSTRIES</a>
+      <p>Official merchandise from Earth's Mightiest Heroes. S.H.I.E.L.D. certified. Asgardian approved. Wakandan sourced.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul>
+      <li><a href="weapons.html">Weapons</a></li>
+      <li><a href="tech.html">Technology</a></li>
+      <li><a href="tools.html">Hero Tools</a></li>
+      <li><a href="clothing.html">Suits & Clothing</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Tech By Creator</h4><ul>
+      <li><a href="#">Tony Stark</a></li>
+      <li><a href="#">Hank Pym</a></li>
+      <li><a href="#">Shuri</a></li>
+      <li><a href="#">Doctor Strange</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Info</h4><ul>
+      <li><a href="#">Tech Clearance</a></li>
+      <li><a href="#">Export Restrictions</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">Contact Fury</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stark Industries — Avengers Division. All rights reserved.</span>
+    <span>🌍 Earth-616 — Dispatching to All Realms</span>
+  </div>
+</footer>
+
+<div class="cart-notif" id="cartNotif"></div>
+<script src="cart.js"></script>
+</body>
+</html>
